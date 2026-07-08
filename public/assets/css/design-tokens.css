@@ -1,0 +1,108 @@
+﻿:root {
+  --color-void: #000000;
+  --color-obsidian: #080808;
+  --color-graphite: #171717;
+  --color-carbon: #222222;
+  --color-iron: #2b2b2b;
+  --color-snow: #ffffff;
+  --color-ash: #999999;
+  --color-smoke: #a6a6a6;
+  --color-pearl: #cccccc;
+  --color-slate: #666666;
+  --color-steel: #8c8c8c;
+  --color-electric-signal: #0099ff;
+  --color-electric-iris: #663af3;
+
+  --color-midnight-ink: var(--color-void);
+  --color-graphite-plate: var(--color-graphite);
+  --color-steel-border: rgba(255, 255, 255, 0.05);
+  --color-moonlight: var(--color-snow);
+  --color-glacier: var(--color-snow);
+  --color-fog: var(--color-ash);
+
+  --font-sans-serif: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-untitled-sans: var(--font-sans-serif);
+  --font-aeonikpro: var(--font-sans-serif);
+  --font-dotdigital: var(--font-sans-serif);
+  --font-heading: 'Inter', system-ui, sans-serif;
+
+  --text-caption: 12px;
+  --text-body: 15px;
+  --text-subheading: 18px;
+  --text-heading: 32px;
+  --text-heading-lg: 62px;
+  --text-display: 85px;
+  --text-hero: 110px;
+
+  --spacing-4: 4px;
+  --spacing-5: 5px;
+  --spacing-6: 6px;
+  --spacing-7: 7px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-14: 14px;
+  --spacing-15: 15px;
+  --spacing-20: 20px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-47: 47px;
+  --spacing-60: 60px;
+  --spacing-80: 80px;
+  --spacing-160: 160px;
+
+  --radius-pill: 100px;
+  --radius-cards: 15px;
+  --radius-input: 8px;
+  --radius-nav: 12px;
+  --radius-card: 15px;
+  --radius-button: 8px;
+
+  --page-max-width: 1200px;
+  --section-gap: 60px;
+  --card-padding: 20px;
+  --element-gap: 10px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans-serif);
+  font-size: var(--text-body);
+  line-height: 1.4;
+  color: var(--color-snow);
+  background: var(--color-void);
+  text-rendering: optimizeLegibility;
+}
+
+img, svg {
+  max-width: 100%;
+  display: block;
+}
+
+button, input, textarea, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-electric-signal);
+}
