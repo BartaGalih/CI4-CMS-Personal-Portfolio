@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateProjectsTable extends Migration
+class CreateMessagesTable extends Migration
 {
     public function up()
     {
@@ -15,38 +15,25 @@ class CreateProjectsTable extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'nama_project' => [
+            'nama' => [
                 'type' => 'VARCHAR',
-                'constraint' => 150,
+                'constraint' => 100,
             ],
-            'deskripsi' => [
+            'email' => [
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+            ],
+            'subjek' => [
+                'type' => 'VARCHAR',
+                'constraint' => 200,
+            ],
+            'pesan' => [
                 'type' => 'TEXT',
-                'null' => true,
-            ],
-            'teknologi' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-                'null' => true,
-            ],
-            'link_github' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-                'null' => true,
-            ],
-            'link_demo' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-                'null' => true,
-            ],
-            'gambar' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-                'null' => true,
             ],
             'status' => [
                 'type' => 'ENUM',
-                'constraint' => ['aktif', 'archived'],
-                'default' => 'aktif',
+                'constraint' => ['baru', 'dibaca', 'dibalas'],
+                'default' => 'baru',
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -59,11 +46,11 @@ class CreateProjectsTable extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->createTable('projects');
+        $this->forge->createTable('messages');
     }
 
     public function down()
     {
-        $this->forge->dropTable('projects');
+        $this->forge->dropTable('messages');
     }
 }
