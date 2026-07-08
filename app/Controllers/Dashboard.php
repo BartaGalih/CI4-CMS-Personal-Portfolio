@@ -20,17 +20,18 @@ class Dashboard extends Controller
         $this->checkAuth();
     }
 
-    private function checkAuth()
+    private function checkAuth(): void
     {
         if (!$this->session->get('admin_logged_in')) {
-            return redirect()->to('/admin/login');
+            $response = redirect()->to('/admin/login');
+            $response->send();
+            exit;
         }
     }
 
     public function index()
     {
         $this->checkAuth();
-        
         $profilModel = new ProfilModel();
         $skillsModel = new SkillsModel();
         $pendidikanModel = new PendidikanModel();

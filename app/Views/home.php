@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio <?= htmlspecialchars($profil['nama']) ?></title>
     <link rel="stylesheet" href="<?=  base_url('assets/css/styles.css') ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <nav>
@@ -66,10 +67,6 @@
                             echo "<img src='" . htmlspecialchars($profil['foto']) . "' alt='Foto Profil' class='img-fluid rounded-2 mb-4'>";
                         }
                     ?>
-                </div>
-                <div class="bio-field">
-                    <div class="bio-field-label">Full Name</div>
-                    <div class="bio-field-value"><?= isset($profil['nama']) ? htmlspecialchars($profil['nama']) : '-'; ?></div>
                 </div>
             </div>
         </div>
@@ -140,7 +137,25 @@
 
         <div class="projects-grid">
             <?php foreach ($projects as $project): ?>
-                <div class="project-tile" style="background-image: url('<?= base_url('uploads/projects/' . $project['gambar'] ?? ''); ?>'); background-size: cover; background-position: center;" data-title="<?= htmlspecialchars($project['nama_project']); ?>" onclick="window.location.href = '<?= htmlspecialchars($project['link_demo'] ?? '#'); ?>'"></div>
+                <div class="project-tile" style="background-image: url('<?= base_url('uploads/projects/' . ($project['gambar'] ?? '')) ?>'); background-size: cover; background-position: center;">
+                    <div class="project-overlay">
+                        <div class="project-title"><?= htmlspecialchars($project['nama_project']); ?></div>
+                        <div class="project-actions">
+                            <?php if (!empty($project['link_demo'])): ?>
+                                <a href="<?= esc($project['link_demo']) ?>" target="_blank" rel="noopener noreferrer" class="project-btn demo-btn">
+                                    <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                    Demo
+                                </a>
+                            <?php endif; ?>
+                            <?php if (!empty($project['link_github'])): ?>
+                                <a href="<?= esc($project['link_github']) ?>" target="_blank" rel="noopener noreferrer" class="project-btn github-btn">
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                                    GitHub
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
             <?php endforeach; ?>
         </div>
     </section>
@@ -151,16 +166,6 @@
 
         <div class="contact-content">
             <div class="contact-info">
-                <div class="contact-group">
-                    <h3>Social</h3>
-                    <div class="social-links">
-                        <a href="#" class="social-link" title="Instagram">📷</a>
-                        <a href="#" class="social-link" title="LinkedIn">💼</a>
-                        <a href="#" class="social-link" title="GitHub">💻</a>
-                        <a href="#" class="social-link" title="Twitter">𝕏</a>
-                    </div>
-                </div>
-
                 <div class="contact-group">
                     <h3>Email</h3>
                     <p><?= isset($profil['email']) ? htmlspecialchars($profil['email']) : 'barta.galih@example.com'; ?></p>
@@ -181,7 +186,7 @@
                 <?php if ($session->has('success')): ?>
                     <div style="background: #2ecc71; border-left: 4px solid #2ecc71; border-radius: 8px; padding: 16px; margin-bottom: 24px; color: white;">
                         <div style="font-weight: bold; margin-bottom: 8px; display: flex; align-items: center;">
-                            <span style="font-size: 18px; margin-right: 8px;">✅</span>
+                            <span style="font-size: 18px; margin-right: 8px;"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></span>
                             Berhasil!
                         </div>
                         <p><?= htmlspecialchars($session->getFlashdata('success')); ?></p>
@@ -191,7 +196,7 @@
                 <?php if ($session->has('error')): ?>
                     <div style="background: #e74c3c; border-left: 4px solid #e74c3c; border-radius: 8px; padding: 16px; margin-bottom: 24px; color: white;">
                         <div style="font-weight: bold; margin-bottom: 8px; display: flex; align-items: center;">
-                            <span style="font-size: 18px; margin-right: 8px;">❌</span>
+                            <span style="font-size: 18px; margin-right: 8px;"><i class="fa-solid fa-circle-xmark" aria-hidden="true"></i></span>
                             Error!
                         </div>
                         <p><?= htmlspecialchars($session->getFlashdata('error')); ?></p>
@@ -201,7 +206,7 @@
                 <?php if (isset($validation) && $validation->getErrors()): ?>
                     <div style="background: #ff4757; border-left: 4px solid #ff4757; border-radius: 8px; padding: 16px; margin-bottom: 24px; color: white;">
                         <div style="font-weight: bold; margin-bottom: 8px; display: flex; align-items: center;">
-                            <span style="font-size: 18px; margin-right: 8px;">⚠️</span>
+                            <span style="font-size: 18px; margin-right: 8px;"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></span>
                             Validasi Gagal
                         </div>
                         <ul style="margin: 0; padding-left: 24px;">

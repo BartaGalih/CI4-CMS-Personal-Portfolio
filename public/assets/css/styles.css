@@ -426,16 +426,78 @@ main {
     border-radius: var(--radius-tiles);
     overflow: hidden;
     background: linear-gradient(135deg, var(--color-electric-signal), #0066cc);
-    cursor: pointer;
-    transition: transform 0.3s;
+    cursor: default;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .project-tile:hover {
     transform: scale(1.02);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.32);
 }
 
-.project-tile:hover::after {
+.project-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.8) 100%);
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.project-tile:hover .project-overlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.project-title {
+    color: var(--color-snow);
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    transform: translateY(8px);
+}
+
+.project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    transform: translateY(8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.project-tile:hover .project-title,
+.project-tile:hover .project-actions {
+    opacity: 1;
     transform: translateY(0);
+}
+
+.project-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    color: var(--color-snow);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    backdrop-filter: blur(8px);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.project-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.project-btn i {
+    font-size: 14px;
 }
 
 /* Contact Section */
@@ -654,19 +716,4 @@ footer {
     .projects-grid {
         grid-template-columns: 1fr;
     }
-}
-
-.project-tile::after {
-    content: attr(data-title);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgb(0 0 0), #00000069);
-    padding: var(--spacing-20);
-    color: var(--color-snow);
-    font-size: 19px;
-    font-weight: 500;
-    transform: translateY(10px);
-    transition: transform 0.3s;
 }
